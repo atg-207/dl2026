@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} % Để viết công thức toán học
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Labwork 1: Gradient Descent Analysis}
+\author{Nguyễn Duy Anh Tùng - 2540107}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This report describes the implementation of the Gradient Descent algorithm from scratch to find the minimum value of the function $f(x) = x^2$ with its derivative $f'(x) = 2x$.
+
+\section{Implementation}
+The algorithm follows these iterative steps:
+\begin{enumerate}
+    \item Initialize $x$ with a random value $x_0 = 10$.
+    \item Update $x$ using the formula: $x = x - r \cdot f'(x)$, where $r$ is the learning rate.
+    \item Repeat for a fixed number of epochs.
+\end{enumerate}
+
+\section{Learning Rate Analysis}
+Based on my experiments, the choice of learning rate $r$ significantly affects convergence:
+
+\begin{itemize}
+    \item \textbf{Small $r$ (e.g., 0.01):} The model converges very slowly. After 10 steps, $x$ is still far from 0.
+    \item \textbf{Optimal $r$ (e.g., 0.1):} The model reaches the minimum point $x \approx 0$ quickly and smoothly.
+    \item \textbf{Large $r$ (e.g., 1.1):} The updates are too drastic, causing $x$ to overshoot and diverge (values of $f(x)$ increase instead of decreasing).
+\end{itemize}
+
+\section{Conclusion}
+Gradient Descent is highly sensitive to the learning rate. A "just right" learning rate is crucial for efficient training.
+
+\end{document}
