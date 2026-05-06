@@ -1,7 +1,11 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath} % Để viết công thức toán học
+\usepackage{amsmath} 
 \usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{array}
+
 \geometry{a4paper, margin=1in}
 
 \title{Labwork 1: Gradient Descent Analysis}
@@ -22,6 +26,21 @@ The algorithm follows these iterative steps:
     \item Update $x$ using the formula: $x = x - r \cdot f'(x)$, where $r$ is the learning rate.
     \item Repeat for a fixed number of epochs.
 \end{enumerate}
+
+\section{Experimental Results}
+Below are the iteration steps for $r = 0.1$:
+
+\begin{center}
+    \begin{tabular}{|l|} 
+        \hline 
+        \begin{minipage}{0.5\textwidth} 
+            \vspace{2mm}
+            \lstinputlisting{result.txt}
+            \vspace{1mm}
+        \end{minipage} \\
+        \hline 
+    \end{tabular}
+\end{center}
 
 \section{Learning Rate Analysis}
 Based on my experiments, the choice of learning rate $r$ significantly affects convergence:
