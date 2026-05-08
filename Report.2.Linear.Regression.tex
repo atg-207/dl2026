@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    backgroundcolor=\color{gray!5},
+    linewidth=0.7\textwidth,
+    xleftmargin=0.1\textwidth
+}
+
+\title{Labwork 2: Linear Regression Implementation}
+\author{Nguyễn Duy Anh Tùng - 2540107}
+\date{May 8, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This report details the implementation of a Linear Regression model using the Gradient Descent algorithm. The objective is to find the optimal parameters $w_1$ and $w_0$ for the model $y = w_1 \cdot x + w_0$.
+
+\section{Implementation}
+The implementation focuses on minimizing the Mean Squared Error (MSE) loss function:
+\begin{equation}
+J(w_0, w_1) = \frac{1}{2N} \sum_{i=1}^{N} (w_1 \cdot x_i + w_0 - y_i)^2 
+\end{equation}
+
+To update the parameters simultaneously, partial derivatives were calculated as follows:
+\begin{itemize}
+    \item $\frac{\partial L}{\partial w_0} = w_1 \cdot x_i + w_0 - y_i$ 
+    \item $\frac{\partial L}{\partial w_1} = x_i \cdot (w_1 \cdot x_i + w_0 - y_i)$ 
+\end{itemize}
+
+The parameters are updated iteratively: $w = w - r \cdot \frac{\partial L}{\partial w}$.
+
+\section{Experimental Results}
+The model was trained on the provided "lr.csv" dataset. Below are the final iterations showing convergence with a learning rate $r = 0.0008$:
+
+\begin{center}
+\begin{lstlisting}
+...
+37200      | 47.9727    | 1.2625     | 9.4513    
+37300      | 47.9731    | 1.2625     | 9.4512
+Final model: y = 1.2622x + 47.9878
+\end{lstlisting}
+\end{center}
+
+\section{Learning Rate Analysis}
+The learning rate $r$ is a critical hyperparameter:
+\begin{itemize}
+    \item \textbf{Optimal rate ($r = 0.0008$):} The model converges smoothly around epoch 37,000. In contrast, lower learning rates significantly increase the required number of epochs; for instance, at $r = 0.0001$, convergence takes approximately 300,000 epochs.
+    \item \textbf{High rate:} Increasing $r$ beyond a certain threshold (somewhere around 0.0008 to 0.0009) leads to divergence, where the loss becomes infinite.
+    \item \textbf{Low rate:} A smaller $r$ requires significantly more iterations to reach the same loss value.
+\end{itemize}
+
+\section{Conclusion}
+The Linear Regression model was successfully implemented and optimized using 2D Gradient Descent. The resulting parameters provide a line that best fits the sample dataset.
+
+\end{document}
